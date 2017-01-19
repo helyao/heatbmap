@@ -23,6 +23,6 @@ def testmongod():
     mongochk.killMongodService()
 
 if __name__ == '__main__':
-
+    mongochk = MongodManager(RUN_MODE)
     manager.run()
 

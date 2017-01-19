@@ -4,4 +4,4 @@ from flask import Blueprint
 
 api = Blueprint('api', __name__)
 
-from . import errors, services
+from . import errors, services, gets, posts

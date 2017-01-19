@@ -10,7 +10,9 @@ def create_var(config_name):
     from .api_1_0 import api as api_1_0_blueprint
     app.register_blueprint(api_1_0_blueprint)
 
-    mongo = PyMongo(app=app, config_prefix='MONGO')
+    mongo = {}
+    mongo['origin'] = PyMongo(app=app, config_prefix='DBORIGIN')
+    mongo['temp'] = PyMongo(app=app, config_prefix='DBTEMP')
 
     return app, mongo
 
