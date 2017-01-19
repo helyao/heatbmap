@@ -7,13 +7,18 @@ class Config(object):
         pass
 
 class DevelopmentConfig(Config):
-    MONGO_HOME = r'd:\Program Files\MongoDB\Server\3.2\bin'
+    MONGO_BIN = r'd:\Program Files\MongoDB\Server\3.2\bin\mongod.exe'
     MONGO_DATA = r'd:\db1113'
     DEBUG = True
-    USE_RELOADER = False
+    USE_RELOADER = False    # use_reloader = False => not works ???
+
+class ProductConfig(Config):
+    MONGO_BIN = 'mongod'                    # when set environment variables
+    MONGO_DATA = r'd:\MongoDB\database'
 
 config = {
     'development': DevelopmentConfig,
+    'product': ProductConfig,
 
     'default': DevelopmentConfig
 }

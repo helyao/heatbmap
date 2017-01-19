@@ -1,8 +1,8 @@
-import pymongo
 from flask import Flask
+from flask.ext.pymongo import PyMongo
 from config import config
 
-def create_app(config_name):
+def create_var(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
@@ -10,9 +10,7 @@ def create_app(config_name):
     from .api_1_0 import api as api_1_0_blueprint
     app.register_blueprint(api_1_0_blueprint)
 
-    return app
+    mongo = PyMongo(app=app, config_prefix='MONGO')
 
-def create_db(config_name):
-    db = pymongo.MongoClient(host=config[config_name].MONGO_HOST,
-                             port=config[config_name].MONGO_PORT)
-    return db
+    return app, mongo
+
